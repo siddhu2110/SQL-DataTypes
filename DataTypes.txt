@@ -1,0 +1,99 @@
+MySQL Shell 8.0.44
+
+Copyright (c) 2016, 2025, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \connect root@localhost
+Creating a session to 'root@localhost'
+Fetching schema names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 8 (X protocol)
+Server version: 8.0.44 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:33060+ ssl  JS > \sql
+Switching to SQL mode... Commands end with ;
+Fetching global names for auto-completion... Press ^C to stop.
+ MySQL  localhost:33060+ ssl  SQL > show databaese;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databaese' at line 1
+ MySQL  localhost:33060+ ssl  SQL > show databases;
++-------------------------+
+| Database                |
++-------------------------+
+| information_schema      |
+| institution             |
+| mysql                   |
+| performance_schema      |
+| sadabadschoolmanagement |
+| school_management       |
+| siddhudb                |
+| sys                     |
+| transaction             |
++-------------------------+
+9 rows in set (0.0022 sec)
+ MySQL  localhost:33060+ ssl  SQL > use school_management;
+Default schema set to `school_management`.
+Fetching global names, object names from `school_management` for auto-completion... Press ^C to stop.
+ MySQL  localhost:33060+ ssl  school_management  SQL > show tables;
++-----------------------------+
+| Tables_in_school_management |
++-----------------------------+
+| marks                       |
+| students                    |
++-----------------------------+
+2 rows in set (0.0032 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL > desc marks;
++------------+------+------+-----+---------+-------+
+| Field      | Type | Null | Key | Default | Extra |
++------------+------+------+-----+---------+-------+
+| student_id | int  | YES  | MUL | NULL    |       |
+| marks      | int  | YES  |     | NULL    |       |
++------------+------+------+-----+---------+-------+
+2 rows in set (0.0034 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL > desc students;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| student_id   | int         | NO   | PRI | NULL    | auto_increment |
+| student_name | varchar(20) | NO   |     | NULL    |                |
+| email        | varchar(25) | YES  | UNI | NULL    |                |
+| age          | bigint      | NO   |     | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.0030 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL > alter table students add column mobile_number;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ MySQL  localhost:33060+ ssl  school_management  SQL > alter table students add column mobile_number bigint;
+Query OK, 0 rows affected (0.0565 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  school_management  SQL > desc students;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| student_id    | int         | NO   | PRI | NULL    | auto_increment |
+| student_name  | varchar(20) | NO   |     | NULL    |                |
+| email         | varchar(25) | YES  | UNI | NULL    |                |
+| age           | bigint      | NO   |     | NULL    |                |
+| mobile_number | bigint      | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.0027 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL > alter table students add column address varchar(50),pincode bigint;
+ERROR: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'pincode bigint' at line 1
+ MySQL  localhost:33060+ ssl  school_management  SQL > alter table students add column address varchar(50),add column pincode bigint;
+Query OK, 0 rows affected (0.0421 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:33060+ ssl  school_management  SQL > desc students;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| student_id    | int         | NO   | PRI | NULL    | auto_increment |
+| student_name  | varchar(20) | NO   |     | NULL    |                |
+| email         | varchar(25) | YES  | UNI | NULL    |                |
+| age           | bigint      | NO   |     | NULL    |                |
+| mobile_number | bigint      | YES  |     | NULL    |                |
+| address       | varchar(50) | YES  |     | NULL    |                |
+| pincode       | bigint      | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+7 rows in set (0.0024 sec)
+ MySQL  localhost:33060+ ssl  school_management  SQL >
